@@ -4,21 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
     tools:context=".MainActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="280dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
+        android:orientation="horizontal"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="16dp">
+        tools:layout_editor_absoluteX="28dp"
+        tools:layout_editor_absoluteY="16dp"
+        android:gravity="center|center_horizontal|center_vertical">
 
         <TableLayout
-            android:id="@+id/tableLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:id="@+id/game_grid"
+            android:layout_width="280dp"
+            android:layout_height="280dp"
             android:gravity="center|center_horizontal|center_vertical"
             android:paddingTop="20dp"
             tools:ignore="MissingConstraints">
@@ -29,24 +31,32 @@
                 android:gravity="center">
 
                 <Button
+                    android:id="@+id/pos1_1"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:textSize="25sp" />
+                    android:textSize="25sp"
+                    android:background="#000"/>
 
                 <Button
+                    android:id="@+id/pos1_2"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:textSize="25sp" />
+                    android:textSize="25sp"
+                    android:background="#000"/>
 
                 <Button
+                    android:id="@+id/pos1_3"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:textSize="25sp" />
+                    android:textSize="25sp"
+                    android:background="#000"/>
 
                 <Button
+                    android:id="@+id/pos1_4"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:textSize="25sp" />
+                    android:textSize="25sp"
+                    android:background="#000"/>
             </TableRow>
 
             <TableRow
@@ -55,24 +65,32 @@
                 android:gravity="center">
 
                 <Button
+                    android:id="@+id/pos2_1"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:textSize="25sp" />
+                    android:textSize="25sp"
+                    android:background="#000"/>
 
                 <Button
+                    android:id="@+id/pos2_2"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:textSize="25sp" />
+                    android:textSize="25sp"
+                    android:background="#000"/>
 
                 <Button
+                    android:id="@+id/pos2_3"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:textSize="25sp" />
+                    android:textSize="25sp"
+                    android:background="#000"/>
 
                 <Button
+                    android:id="@+id/pos2_4"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:textSize="25sp" />
+                    android:textSize="25sp"
+                    android:background="#000"/>
             </TableRow>
 
             <TableRow
@@ -81,24 +99,32 @@
                 android:gravity="center">
 
                 <Button
+                    android:id="@+id/pos3_1"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:textSize="25sp" />
+                    android:textSize="25sp"
+                    android:background="#000"/>
 
                 <Button
+                    android:id="@+id/pos3_2"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:textSize="25sp" />
+                    android:textSize="25sp"
+                    android:background="#000"/>
 
                 <Button
+                    android:id="@+id/pos3_3"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:textSize="25sp" />
+                    android:textSize="25sp"
+                    android:background="#000"/>
 
                 <Button
+                    android:id="@+id/pos3_4"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:textSize="25sp" />
+                    android:textSize="25sp"
+                    android:background="#000"/>
             </TableRow>
 
             <TableRow
@@ -107,56 +133,85 @@
                 android:gravity="center">
 
                 <Button
+                    android:id="@+id/pos4_1"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:textSize="25sp" />
+                    android:textSize="25sp"
+                    android:background="#000"/>
 
                 <Button
+                    android:id="@+id/pos4_2"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:textSize="25sp" />
+                    android:textSize="25sp"
+                    android:background="#000"/>
 
                 <Button
+                    android:id="@+id/pos4_3"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:textSize="25sp" />
+                    android:textSize="25sp"
+                    android:background="#000"/>
 
                 <Button
+                    android:id="@+id/pos4_4"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:textSize="25sp" />
+                    android:textSize="25sp"
+                    android:background="#000"/>
             </TableRow>
 
         </TableLayout>
-    </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="280dp"
-        android:layout_height="match_parent"
-        android:layout_marginEnd="8dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toStartOf="@+id/linearLayout4"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="33dp">
-
-        <ImageView
-            android:id="@+id/imageView2"
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingTop="20dp"
-            app:srcCompat="@drawable/icon246x0w" />
-    </LinearLayout>
+            android:layout_height="280dp"
+            android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/linearLayout4"
-        android:layout_width="100dp"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="604dp"
-        tools:layout_editor_absoluteY="57dp" >
+            <ImageView
+                android:id="@+id/game_image"
+                android:layout_width="240dp"
+                android:layout_height="240dp"
+                android:layout_weight="1"
+                android:paddingTop="40dp"
+                android:paddingBottom="20dp"
+                app:srcCompat="@drawable/icon246x0w" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/score_and_button"
+            android:layout_width="100dp"
+            android:layout_height="280dp"
+            android:orientation="horizontal"
+            android:paddingTop="20dp"
+            android:gravity="center|center_horizontal|center_vertical">
+
+            <TextView
+                android:id="@+id/title_score"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:text="N° de jugadas:"
+                android:textAlignment="center"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/score"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_below="@id/title_score"
+                android:paddingTop="20dp"
+                android:text="XX"
+                android:textAlignment="center"
+                android:textSize="40sp" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_below="@id/score"
+                android:paddingTop="20dp" />
+        </RelativeLayout>
+
     </LinearLayout>
 
 
