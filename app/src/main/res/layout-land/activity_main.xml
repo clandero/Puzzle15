@@ -175,7 +175,7 @@
                 android:layout_weight="1"
                 android:paddingTop="40dp"
                 android:paddingBottom="20dp"
-                app:srcCompat="@drawable/icon246x0w" />
+                app:srcCompat="@drawable/imagenoriginal" />
         </LinearLayout>
 
         <RelativeLayout
