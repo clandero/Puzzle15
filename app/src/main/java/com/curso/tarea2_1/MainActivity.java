@@ -7,8 +7,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import java.util.Random;
+import android.app.Dialog;
 
 public class MainActivity extends AppCompatActivity {
     Button[] celdas_juego = new Button[16];
@@ -25,10 +27,37 @@ public class MainActivity extends AppCompatActivity {
             array[i] = randomElement;
         }
     }
+
+    public void MyCustomAlertDialog(){
+        final Dialog MyDialog = new Dialog(MainActivity.this);
+        MyDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        MyDialog.setContentView(R.layout.popup_image);
+
+        Button close = (Button)MyDialog.findViewById(R.id.close);
+        close.setEnabled(true);
+
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MyDialog.cancel();
+            }
+        });
+
+        MyDialog.show();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Button SHOW = (Button)findViewById(R.id.show_image);
+        SHOW.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MyCustomAlertDialog();
+            }
+        });
+
         celdas_juego[0] = findViewById(R.id.pos1_1);
         celdas_juego[1] = findViewById(R.id.pos1_2);
         celdas_juego[2] = findViewById(R.id.pos1_3);
