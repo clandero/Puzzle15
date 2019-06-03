@@ -52,28 +52,28 @@
                     android:id="@+id/pos1_1"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:background="@drawable/uno"
+                    android:background="#9c9c9c"
                     android:textSize="25sp" />
 
                 <Button
                     android:id="@+id/pos1_2"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:background="@drawable/dos"
+                    android:background="#9c9c9c"
                     android:textSize="25sp" />
 
                 <Button
                     android:id="@+id/pos1_3"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:background="@drawable/tres"
+                    android:background="#9c9c9c"
                     android:textSize="25sp" />
 
                 <Button
                     android:id="@+id/pos1_4"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:background="@drawable/cuatro"
+                    android:background="#9c9c9c"
                     android:textSize="25sp" />
             </TableRow>
 
@@ -87,28 +87,28 @@
                     android:id="@+id/pos2_1"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:background="@drawable/cinco"
+                    android:background="#9c9c9c"
                     android:textSize="25sp" />
 
                 <Button
                     android:id="@+id/pos2_2"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:background="@drawable/seis"
+                    android:background="#9c9c9c"
                     android:textSize="25sp" />
 
                 <Button
                     android:id="@+id/pos2_3"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:background="@drawable/siete"
+                    android:background="#9c9c9c"
                     android:textSize="25sp" />
 
                 <Button
                     android:id="@+id/pos2_4"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:background="@drawable/ocho"
+                    android:background="#9c9c9c"
                     android:textSize="25sp" />
             </TableRow>
 
@@ -122,28 +122,28 @@
                     android:id="@+id/pos3_1"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:background="@drawable/nueve"
+                    android:background="#9c9c9c"
                     android:textSize="25sp" />
 
                 <Button
                     android:id="@+id/pos3_2"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:background="@drawable/diez"
+                    android:background="#9c9c9c"
                     android:textSize="25sp" />
 
                 <Button
                     android:id="@+id/pos3_3"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:background="@drawable/once"
+                    android:background="#9c9c9c"
                     android:textSize="25sp" />
 
                 <Button
                     android:id="@+id/pos3_4"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:background="@drawable/doce"
+                    android:background="#9c9c9c"
                     android:textSize="25sp" />
             </TableRow>
 
@@ -157,21 +157,21 @@
                     android:id="@+id/pos4_1"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:background="@drawable/trece"
+                    android:background="#9c9c9c"
                     android:textSize="25sp" />
 
                 <Button
                     android:id="@+id/pos4_2"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:background="@drawable/catorce"
+                    android:background="#9c9c9c"
                     android:textSize="25sp" />
 
                 <Button
                     android:id="@+id/pos4_3"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:background="@drawable/quince"
+                    android:background="#9c9c9c"
                     android:textSize="25sp" />
 
                 <Button
