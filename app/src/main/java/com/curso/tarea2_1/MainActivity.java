@@ -15,7 +15,8 @@ import android.app.Dialog;
 public class MainActivity extends AppCompatActivity {
     Button[] celdas_juego = new Button[16];
     int[] backgroundIDs = new int[16];
-    int[] values = {13,0,11,6,5,7,4,8,1,12,14,9,3,15,2,10};
+    //int[] values = {13,0,11,6,5,7,4,8,1,12,14,9,3,15,2,10};
+    int[] values = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
 
     public static void Fihser_Yates_Algorithm(int[] array) {
         int n = array.length;
@@ -45,6 +46,13 @@ public class MainActivity extends AppCompatActivity {
 
         MyDialog.show();
     }
+
+    void moveImageinGrid(Button x, int i, Button y, int j){
+        swapButtonBackgrounds(x,i,y,j);
+        swap(backgroundIDs,i,j);
+        swap(values,i,j);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,8 +82,7 @@ public class MainActivity extends AppCompatActivity {
         celdas_juego[13] = findViewById(R.id.pos4_2);
         celdas_juego[14] = findViewById(R.id.pos4_3);
         celdas_juego[15] = findViewById(R.id.pos4_4);
-        //int[] values = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
-        //Fihser_Yates_Algorithm(values);
+        Fihser_Yates_Algorithm(values);
         checkIsValid(values);
         arrangeImagesOnGrid(values,celdas_juego,backgroundIDs);
 
@@ -83,14 +90,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(findPositionX(values)==1){
-                    swapButtonBackgrounds(celdas_juego[0],0,celdas_juego[1],1);
-                    swap(backgroundIDs,0,1);
-                    swap(values,0,1);
+                    moveImageinGrid(celdas_juego[0],0,celdas_juego[1],1);
                 }
                 if(findPositionX(values)==4){
-                    swapButtonBackgrounds(celdas_juego[0],0,celdas_juego[4],4);
-                    swap(backgroundIDs,0,4);
-                    swap(values,0,4);
+                    moveImageinGrid(celdas_juego[0],0,celdas_juego[4],4);
                 }
             }
         });
@@ -98,29 +101,231 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(findPositionX(values)==0){
-                    swapButtonBackgrounds(celdas_juego[1],1,celdas_juego[0],0);
-                    swap(backgroundIDs,1,0);
-                    swap(values,1,0);
+                    moveImageinGrid(celdas_juego[1],1,celdas_juego[0],0);
                 }
                 if(findPositionX(values)==2){
-                    swapButtonBackgrounds(celdas_juego[1],1,celdas_juego[2],2);
-                    swap(backgroundIDs,1,2);
-                    swap(values,1,2);
+                    moveImageinGrid(celdas_juego[1],1,celdas_juego[2],2);
                 }
                 if(findPositionX(values)==5){
-                    swapButtonBackgrounds(celdas_juego[1],1,celdas_juego[5],5);
-                    swap(backgroundIDs,1,5);
-                    swap(values,1,5);
+                    moveImageinGrid(celdas_juego[1],1,celdas_juego[5],5);
                 }
 
             }
         });
+        celdas_juego[2].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(findPositionX(values)==1){
+                    moveImageinGrid(celdas_juego[2],2,celdas_juego[1],1);
+                }
+                if(findPositionX(values)==3){
+                    moveImageinGrid(celdas_juego[2],2,celdas_juego[3],3);
+                }
+                if(findPositionX(values)==6){
+                    moveImageinGrid(celdas_juego[2],2,celdas_juego[6],6);
+                }
 
+            }
+        });
+        celdas_juego[3].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(findPositionX(values)==2){
+                    moveImageinGrid(celdas_juego[3],3,celdas_juego[2],2);
+                }
+                if(findPositionX(values)==7){
+                    moveImageinGrid(celdas_juego[3],3,celdas_juego[7],7);
+                }
+            }
+        });
+        celdas_juego[4].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(findPositionX(values)==0){
+                    moveImageinGrid(celdas_juego[4],4,celdas_juego[0],0);
+                }
+                if(findPositionX(values)==5){
+                    moveImageinGrid(celdas_juego[4],4,celdas_juego[5],5);
+                }
+                if(findPositionX(values)==8){
+                    moveImageinGrid(celdas_juego[4],4,celdas_juego[8],8);
+                }
+
+            }
+        });
+        celdas_juego[5].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(findPositionX(values)==1){
+                    moveImageinGrid(celdas_juego[5],5,celdas_juego[1],1);
+                }
+                if(findPositionX(values)==4){
+                    moveImageinGrid(celdas_juego[5],5,celdas_juego[4],4);
+                }
+                if(findPositionX(values)==6){
+                    moveImageinGrid(celdas_juego[5],5,celdas_juego[6],6);
+                }
+                if(findPositionX(values)==9){
+                    moveImageinGrid(celdas_juego[5],5,celdas_juego[9],9);
+                }
+
+            }
+        });
+        celdas_juego[6].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(findPositionX(values)==2){
+                    moveImageinGrid(celdas_juego[6],6,celdas_juego[2],2);
+                }
+                if(findPositionX(values)==5){
+                    moveImageinGrid(celdas_juego[6],6,celdas_juego[5],5);
+                }
+                if(findPositionX(values)==7){
+                    moveImageinGrid(celdas_juego[6],6,celdas_juego[7],7);
+                }
+                if(findPositionX(values)==10){
+                    moveImageinGrid(celdas_juego[6],6,celdas_juego[10],10);
+                }
+
+            }
+        });
+        celdas_juego[7].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(findPositionX(values)==3){
+                    moveImageinGrid(celdas_juego[7],7,celdas_juego[3],3);
+                }
+                if(findPositionX(values)==6){
+                    moveImageinGrid(celdas_juego[7],7,celdas_juego[6],6);
+                }
+                if(findPositionX(values)==11){
+                    moveImageinGrid(celdas_juego[7],7,celdas_juego[11],11);
+                }
+
+            }
+        });
+        celdas_juego[8].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(findPositionX(values)==4){
+                    moveImageinGrid(celdas_juego[8],8,celdas_juego[4],4);
+                }
+                if(findPositionX(values)==9){
+                    moveImageinGrid(celdas_juego[8],8,celdas_juego[9],9);
+                }
+                if(findPositionX(values)==12){
+                    moveImageinGrid(celdas_juego[8],8,celdas_juego[12],12);
+                }
+
+            }
+        });
+        celdas_juego[9].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(findPositionX(values)==8){
+                    moveImageinGrid(celdas_juego[9],9,celdas_juego[8],8);
+                }
+                if(findPositionX(values)==5){
+                    moveImageinGrid(celdas_juego[9],9,celdas_juego[5],5);
+                }
+                if(findPositionX(values)==10){
+                    moveImageinGrid(celdas_juego[9],9,celdas_juego[10],10);
+                }
+                if(findPositionX(values)==13){
+                    moveImageinGrid(celdas_juego[9],9,celdas_juego[13],13);
+                }
+
+            }
+        });
+        celdas_juego[10].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(findPositionX(values)==6){
+                    moveImageinGrid(celdas_juego[10],10,celdas_juego[6],6);
+                }
+                if(findPositionX(values)==9){
+                    moveImageinGrid(celdas_juego[10],10,celdas_juego[9],9);
+                }
+                if(findPositionX(values)==11){
+                    moveImageinGrid(celdas_juego[10],10,celdas_juego[11],11);
+                }
+                if(findPositionX(values)==14){
+                    moveImageinGrid(celdas_juego[10],10,celdas_juego[14],14);
+                }
+            }
+        });
+        celdas_juego[11].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(findPositionX(values)==7){
+                    moveImageinGrid(celdas_juego[11],11,celdas_juego[7],7);
+                }
+                if(findPositionX(values)==10){
+                    moveImageinGrid(celdas_juego[11],11,celdas_juego[10],10);
+                }
+                if(findPositionX(values)==15){
+                    moveImageinGrid(celdas_juego[11],11,celdas_juego[15],15);
+                }
+
+            }
+        });
+        celdas_juego[12].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(findPositionX(values)==8){
+                    moveImageinGrid(celdas_juego[12],12,celdas_juego[8],8);
+                }
+                if(findPositionX(values)==13){
+                    moveImageinGrid(celdas_juego[12],12,celdas_juego[13],13);
+                }
+            }
+        });
+        celdas_juego[13].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(findPositionX(values)==12){
+                    moveImageinGrid(celdas_juego[13],13,celdas_juego[12],12);
+                }
+                if(findPositionX(values)==9){
+                    moveImageinGrid(celdas_juego[13],13,celdas_juego[9],9);
+                }
+                if(findPositionX(values)==14){
+                    moveImageinGrid(celdas_juego[13],13,celdas_juego[14],14);
+                }
+
+            }
+        });
+        celdas_juego[14].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(findPositionX(values)==10){
+                    moveImageinGrid(celdas_juego[14],14,celdas_juego[10],10);
+                }
+                if(findPositionX(values)==13){
+                    moveImageinGrid(celdas_juego[14],14,celdas_juego[13],13);
+                }
+                if(findPositionX(values)==15){
+                    moveImageinGrid(celdas_juego[14],14,celdas_juego[15],15);
+                }
+
+            }
+        });
+        celdas_juego[15].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(findPositionX(values)==11){
+                    moveImageinGrid(celdas_juego[15],15,celdas_juego[11],11);
+                }
+                if(findPositionX(values)==14){
+                    moveImageinGrid(celdas_juego[15],15,celdas_juego[14],14);
+                }
+            }
+        });
     }
 
     void swapButtonBackgrounds(Button x, int i, Button y, int j){
         int aux = backgroundIDs[i];
-        Log.d("SWAP","x.ResourceBack:"+aux);
+        //Log.d("SWAP","x.ResourceBack:"+aux);
         y.setBackgroundResource(aux);
         x.setBackgroundResource(backgroundIDs[j]);
     }
@@ -164,7 +369,7 @@ public class MainActivity extends AppCompatActivity {
                 buttons[i].setBackgroundResource(R.drawable.doce);
                 backgrounds[i] = R.drawable.doce;
             }else if(array[i]==13){
-                Log.d("RESOURCES","R.res.trece:"+R.drawable.trece);
+                //Log.d("RESOURCES","R.res.trece:"+R.drawable.trece);
                 buttons[i].setBackgroundResource(R.drawable.trece);
                 backgrounds[i] = R.drawable.trece;
             }else if(array[i]==14){
@@ -222,13 +427,20 @@ public class MainActivity extends AppCompatActivity {
         int x=0;
         for(int i=0;i<16;i++){
             if(array[i]==0){
-                x = (i%4)+1;
+                if(i>=0 && i<=3){
+                    x=1;
+                }else if(i>=4 && i<=7){
+                    x=2;
+                }else if(i>=8 && i<=11){
+                    x=3;
+                }else if(i>=12 && i<=15){
+                    x=4;
+                }
             }
         }
         //Log.d("MY_INT","posicion: "+x);
         return x;
     }
-
     int findPositionX(int values[]){
         int x=0;
         for(int i=0;i<16;i++) {
