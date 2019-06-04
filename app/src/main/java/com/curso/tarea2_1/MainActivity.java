@@ -13,12 +13,15 @@ import android.view.Window;
 import android.widget.Button;
 import java.util.Random;
 import android.app.Dialog;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     Button[] celdas_juego = new Button[16];
+    TextView marcador;
     int[] backgroundIDs = new int[16];
     //int[] values = {13,0,11,6,5,7,4,8,1,12,14,9,3,15,2,10};
     int[] values = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
+    int numero_jugadas;
 
     public static void Fihser_Yates_Algorithm(int[] array) {
         int n = array.length;
@@ -53,13 +56,14 @@ public class MainActivity extends AppCompatActivity {
         swapButtonBackgrounds(x,i,y,j);
         swap(backgroundIDs,i,j);
         swap(values,i,j);
+        numero_jugadas++;
+        marcador.setText(Integer.toString(numero_jugadas));
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             Button show = findViewById(R.id.show_image);
             show.setOnClickListener(new View.OnClickListener() {
@@ -69,8 +73,9 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
-
-
+        numero_jugadas=0;
+        marcador = findViewById(R.id.score);
+        marcador.setText(Integer.toString(numero_jugadas));
         celdas_juego[0] = findViewById(R.id.pos1_1);
         celdas_juego[1] = findViewById(R.id.pos1_2);
         celdas_juego[2] = findViewById(R.id.pos1_3);
@@ -333,8 +338,12 @@ public class MainActivity extends AppCompatActivity {
         //Log.d("SWAP","x.ResourceBack:"+aux);
         y.setBackgroundResource(aux);
         x.setBackgroundResource(backgroundIDs[j]);
+
     }
     void arrangeImagesOnGrid(int[] array, Button[] buttons, int[] backgrounds){
+        if(backgrounds==null){
+            Log.e("ERROR","ESTA NULA LA WEA");
+        }
         for(int i=0;i<16;i++){
             if(array[i]==1) {
                 buttons[i].setBackgroundResource(R.drawable.uno);
@@ -384,7 +393,8 @@ public class MainActivity extends AppCompatActivity {
                 buttons[i].setBackgroundResource(R.drawable.quince);
                 backgrounds[i] = R.drawable.quince;
             }else if(array[i]==0){
-                backgrounds[i]=0;
+                buttons[i].setBackgroundResource(R.drawable.dieciseis);
+                backgrounds[i]=R.drawable.dieciseis;
             }
         }
     }
@@ -462,16 +472,25 @@ public class MainActivity extends AppCompatActivity {
         inflater.inflate(R.menu.main_menu, menu);
         return true;
     }
+
     //Método que guarda el estado actual de la aplicación, para ser restaurado posteriormente
     @Override
     protected void onSaveInstanceState(Bundle outState){
+        //outState.putString("numero_telefono",input.getText().toString());
+        outState.putIntArray("posiciones",values);
+        outState.putInt("marcador",numero_jugadas);
+        //outState.putIntArray("fondos_botonoes",backgroundIDs);
         super.onSaveInstanceState(outState);
     }
     //Método que restaura el estado de la aplicación guardado previamente
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
+        values = savedInstanceState.getIntArray("posiciones");
+        numero_jugadas = savedInstanceState.getInt("marcador");
+        marcador.setText(Integer.toString(numero_jugadas));
+        //backgroundIDs = savedInstanceState.getIntArray("fondos_botones");
+        arrangeImagesOnGrid(values,celdas_juego,backgroundIDs);
+
     }
-
-
 }
