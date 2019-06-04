@@ -1,5 +1,7 @@
 package com.curso.tarea2_1;
 
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -58,13 +60,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button SHOW = (Button)findViewById(R.id.show_image);
-        SHOW.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MyCustomAlertDialog();
-            }
-        });
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            Button show = findViewById(R.id.show_image);
+            show.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MyCustomAlertDialog();
+                }
+            });
+        }
+
 
         celdas_juego[0] = findViewById(R.id.pos1_1);
         celdas_juego[1] = findViewById(R.id.pos1_2);
@@ -457,5 +462,16 @@ public class MainActivity extends AppCompatActivity {
         inflater.inflate(R.menu.main_menu, menu);
         return true;
     }
+    //Método que guarda el estado actual de la aplicación, para ser restaurado posteriormente
+    @Override
+    protected void onSaveInstanceState(Bundle outState){
+        super.onSaveInstanceState(outState);
+    }
+    //Método que restaura el estado de la aplicación guardado previamente
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+    }
+
 
 }
