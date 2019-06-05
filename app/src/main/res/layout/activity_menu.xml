@@ -7,18 +7,19 @@
     tools:context=".MenuActivity">
 
     <LinearLayout
-        android:layout_width="395dp"
-        android:layout_height="715dp"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:gravity="center|center_horizontal|center_vertical"
-        tools:ignore="MissingConstraints">
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="205dp"
             android:layout_height="204dp"
+            android:contentDescription="TODO"
             app:srcCompat="@drawable/icon246x0w" />
 
         <TextView
@@ -27,21 +28,21 @@
             android:layout_height="wrap_content"
             android:text="Puzzle15"
             android:textAlignment="center"
-            android:textSize="40dp" />
+            android:textSize="40sp" />
 
         <Button
             android:id="@+id/new_game"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nueva Partida"
-            android:onClick="goToMainActivity"/>
+            android:onClick="goToMainActivity"
+            android:text="Nueva Partida" />
 
         <Button
             android:id="@+id/load_game"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cargar Partida"
-            android:onClick="goToMainActivity"/>
+            android:onClick="CargarPartida"
+            android:text="Cargar Partida" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

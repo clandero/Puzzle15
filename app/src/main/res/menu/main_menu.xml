@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/new_game"
+    <item android:id="@+id/change_image"
+        android:title="Cambiar Imagen"
+        app:showAsAction="never" />
+    <item android:id="@+id/instructions"
         android:title="Instrucciones"
         app:showAsAction="never" />
-    <item android:id="@+id/help"
+    <item android:id="@+id/credits"
         android:title="Creditos"
         app:showAsAction="never"/>
+
 
 </menu>

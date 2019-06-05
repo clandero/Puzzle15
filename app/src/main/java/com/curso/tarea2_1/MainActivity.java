@@ -1,8 +1,14 @@
 package com.curso.tarea2_1;
 
+import android.Manifest;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,17 +17,52 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOError;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import android.app.Dialog;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+    private static int hayquecargarpartida=0;
     Button[] celdas_juego = new Button[16];
+    Button guardarJuego;
     TextView marcador;
     int[] backgroundIDs = new int[16];
-    //int[] values = {13,0,11,6,5,7,4,8,1,12,14,9,3,15,2,10};
-    int[] values = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
+    int[] values = {13,0,11,6,5,7,4,8,1,12,14,9,3,15,2,10};
+    //int[] values = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0};
     int numero_jugadas;
+    boolean checkIfPuzzleIsSolved(int[] array){
+        int sum=0;
+        for(int i=0;i<16;i++){
+            if(i+1 == array[i]){
+                Log.d("LOOP","POSTION "+(i+1)+" IS EQUAL TO "+(array[i]));
+                sum=sum+1;
+            }
+            else if(i==15 && array[i]==0){
+                sum=sum+1;
+            }
+        }
+        Log.d("LOOP","My array is: "+ Arrays.toString(array));
+        Log.d("LOOP","sum:"+sum);
+        if(sum==16){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 
     public static void Fihser_Yates_Algorithm(int[] array) {
         int n = array.length;
@@ -34,6 +75,62 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void saveGame(String filename, int[] content, int actualScore){
+        String file = filename+".txt";
+        try{
+            FileOutputStream fos = getApplicationContext().openFileOutput(file, MODE_PRIVATE);
+            fos.write((actualScore +" ").getBytes());
+            for(int i=0;i<16;i++) {
+                fos.write(Integer.toString(content[i]).getBytes());
+                fos.write(" ".getBytes());
+            }
+            fos.close();
+            Toast.makeText(this,"La partida ha sido guardada",Toast.LENGTH_SHORT).show();
+        }catch(FileNotFoundException e){
+            e.printStackTrace();
+            Toast.makeText(this,"Archivo no disponible",Toast.LENGTH_SHORT).show();
+        }catch (IOException e){
+            e.printStackTrace();
+            Toast.makeText(this,"Error al guardar partida",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public static void LoadGameListener(){
+        hayquecargarpartida = 1;
+    }
+    public static void NewGameListener(){
+        hayquecargarpartida = 0;
+    }
+
+    private void loadGame(String file) {
+        int bytesLeidos;
+        byte[] buffer = new byte[1024];
+        try {
+            FileInputStream fis = getApplicationContext().openFileInput("respaldo_partida.txt");
+            while((bytesLeidos = fis.read(buffer))>0){
+                String s = new String(buffer);
+                Log.d("LOAD","Buffer is: "+s);
+                int[] numbers = new int[17];
+                Pattern p = Pattern.compile("\\d+");
+                Matcher m = p.matcher(s);
+                int i=0;
+                while(m.find()) {
+                    numbers[i] = Integer.parseInt(m.group());
+                    i++;
+                }
+                Log.d("LOAD","numbers are: "+Arrays.toString(numbers));
+                numero_jugadas = numbers[0];
+                for(i=0;i<16;i++){
+                    values[i] = numbers[i+1];
+                }
+            }
+            fis.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Error al cargar partida", Toast.LENGTH_SHORT).show();
+        }
+
+    }
     public void MyCustomAlertDialog(){
         final Dialog MyDialog = new Dialog(MainActivity.this);
         MyDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -58,12 +155,24 @@ public class MainActivity extends AppCompatActivity {
         swap(values,i,j);
         numero_jugadas++;
         marcador.setText(Integer.toString(numero_jugadas));
+        if(checkIfPuzzleIsSolved(values)){
+            Toast.makeText(getApplicationContext(),"Has resuelto el Puzzle15, felicitaciones!",Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("LOAD","hayquecargarpartida="+hayquecargarpartida);
+        if(hayquecargarpartida==1){
+            loadGame("respaldo_partida");
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
+            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1000);
+        }
+
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             Button show = findViewById(R.id.show_image);
             show.setOnClickListener(new View.OnClickListener() {
@@ -73,9 +182,12 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
-        numero_jugadas=0;
+        if(hayquecargarpartida==0){
+            numero_jugadas=0;
+        }
         marcador = findViewById(R.id.score);
         marcador.setText(Integer.toString(numero_jugadas));
+        guardarJuego = findViewById(R.id.save_game);
         celdas_juego[0] = findViewById(R.id.pos1_1);
         celdas_juego[1] = findViewById(R.id.pos1_2);
         celdas_juego[2] = findViewById(R.id.pos1_3);
@@ -92,9 +204,18 @@ public class MainActivity extends AppCompatActivity {
         celdas_juego[13] = findViewById(R.id.pos4_2);
         celdas_juego[14] = findViewById(R.id.pos4_3);
         celdas_juego[15] = findViewById(R.id.pos4_4);
-        Fihser_Yates_Algorithm(values);
-        checkIsValid(values);
+        if(hayquecargarpartida==0){
+            Fihser_Yates_Algorithm(values);
+            checkIsValid(values);
+        }
         arrangeImagesOnGrid(values,celdas_juego,backgroundIDs);
+        guardarJuego.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String filename = "respaldo_partida";
+                saveGame(filename,values,numero_jugadas);
+            }
+        });
 
         celdas_juego[0].setOnClickListener(new View.OnClickListener() {
             @Override
