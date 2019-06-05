@@ -9,11 +9,13 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Environment;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -594,6 +596,22 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if(id == R.id.instructions){
+            Intent myintent = new Intent(this,Instructions.class);
+            startActivity(myintent);
+            return false;
+        }
+        else if(id == R.id.credits){
+            Intent myintent = new Intent(this,Creditos.class);
+            startActivity(myintent);
+            return false;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     //Método que guarda el estado actual de la aplicación, para ser restaurado posteriormente
     @Override
     protected void onSaveInstanceState(Bundle outState){
@@ -614,4 +632,12 @@ public class MainActivity extends AppCompatActivity {
         arrangeImagesOnGrid(values,celdas_juego,backgroundIDs);
 
     }
+
+    public void goToMainActivity(View view) {
+        Intent intent = new Intent(this, Instructions.class);
+        startActivity(intent);
+    }
+
+
+
 }
