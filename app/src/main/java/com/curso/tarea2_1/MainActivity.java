@@ -1,15 +1,9 @@
 package com.curso.tarea2_1;
-
 import android.Manifest;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.os.Environment;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,19 +13,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
-
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOError;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import android.app.Dialog;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,22 +30,19 @@ public class MainActivity extends AppCompatActivity {
     Button guardarJuego;
     TextView marcador;
     int[] backgroundIDs = new int[16];
-    int[] values = {13,0,11,6,5,7,4,8,1,12,14,9,3,15,2,10};
-    //int[] values = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0};
+    int[] values = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0};
     int numero_jugadas;
+
     boolean checkIfPuzzleIsSolved(int[] array){
         int sum=0;
         for(int i=0;i<16;i++){
             if(i+1 == array[i]){
-                Log.d("LOOP","POSTION "+(i+1)+" IS EQUAL TO "+(array[i]));
                 sum=sum+1;
             }
             else if(i==15 && array[i]==0){
                 sum=sum+1;
             }
         }
-        Log.d("LOOP","My array is: "+ Arrays.toString(array));
-        Log.d("LOOP","sum:"+sum);
         if(sum==16){
             return true;
         }
@@ -100,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
     public static void LoadGameListener(){
         hayquecargarpartida = 1;
     }
+
     public static void NewGameListener(){
         hayquecargarpartida = 0;
     }
@@ -120,7 +106,6 @@ public class MainActivity extends AppCompatActivity {
                     numbers[i] = Integer.parseInt(m.group());
                     i++;
                 }
-                Log.d("LOAD","numbers are: "+Arrays.toString(numbers));
                 numero_jugadas = numbers[0];
                 for(i=0;i<16;i++){
                     values[i] = numbers[i+1];
@@ -133,21 +118,19 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
     public void MyCustomAlertDialog(){
         final Dialog MyDialog = new Dialog(MainActivity.this);
         MyDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         MyDialog.setContentView(R.layout.popup_image);
-
         Button close = (Button)MyDialog.findViewById(R.id.close);
         close.setEnabled(true);
-
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 MyDialog.cancel();
             }
         });
-
         MyDialog.show();
     }
 
@@ -164,7 +147,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("LOAD","hayquecargarpartida="+hayquecargarpartida);
         if(hayquecargarpartida==1){
             loadGame("respaldo_partida");
         }
@@ -242,7 +224,6 @@ public class MainActivity extends AppCompatActivity {
                 if(findPositionX(values)==5){
                     moveImageinGrid(celdas_juego[1],1,celdas_juego[5],5);
                 }
-
             }
         });
         celdas_juego[2].setOnClickListener(new View.OnClickListener() {
@@ -257,7 +238,6 @@ public class MainActivity extends AppCompatActivity {
                 if(findPositionX(values)==6){
                     moveImageinGrid(celdas_juego[2],2,celdas_juego[6],6);
                 }
-
             }
         });
         celdas_juego[3].setOnClickListener(new View.OnClickListener() {
@@ -283,7 +263,6 @@ public class MainActivity extends AppCompatActivity {
                 if(findPositionX(values)==8){
                     moveImageinGrid(celdas_juego[4],4,celdas_juego[8],8);
                 }
-
             }
         });
         celdas_juego[5].setOnClickListener(new View.OnClickListener() {
@@ -301,7 +280,6 @@ public class MainActivity extends AppCompatActivity {
                 if(findPositionX(values)==9){
                     moveImageinGrid(celdas_juego[5],5,celdas_juego[9],9);
                 }
-
             }
         });
         celdas_juego[6].setOnClickListener(new View.OnClickListener() {
@@ -319,7 +297,6 @@ public class MainActivity extends AppCompatActivity {
                 if(findPositionX(values)==10){
                     moveImageinGrid(celdas_juego[6],6,celdas_juego[10],10);
                 }
-
             }
         });
         celdas_juego[7].setOnClickListener(new View.OnClickListener() {
@@ -334,7 +311,6 @@ public class MainActivity extends AppCompatActivity {
                 if(findPositionX(values)==11){
                     moveImageinGrid(celdas_juego[7],7,celdas_juego[11],11);
                 }
-
             }
         });
         celdas_juego[8].setOnClickListener(new View.OnClickListener() {
@@ -349,7 +325,6 @@ public class MainActivity extends AppCompatActivity {
                 if(findPositionX(values)==12){
                     moveImageinGrid(celdas_juego[8],8,celdas_juego[12],12);
                 }
-
             }
         });
         celdas_juego[9].setOnClickListener(new View.OnClickListener() {
@@ -367,7 +342,6 @@ public class MainActivity extends AppCompatActivity {
                 if(findPositionX(values)==13){
                     moveImageinGrid(celdas_juego[9],9,celdas_juego[13],13);
                 }
-
             }
         });
         celdas_juego[10].setOnClickListener(new View.OnClickListener() {
@@ -399,7 +373,6 @@ public class MainActivity extends AppCompatActivity {
                 if(findPositionX(values)==15){
                     moveImageinGrid(celdas_juego[11],11,celdas_juego[15],15);
                 }
-
             }
         });
         celdas_juego[12].setOnClickListener(new View.OnClickListener() {
@@ -425,7 +398,6 @@ public class MainActivity extends AppCompatActivity {
                 if(findPositionX(values)==14){
                     moveImageinGrid(celdas_juego[13],13,celdas_juego[14],14);
                 }
-
             }
         });
         celdas_juego[14].setOnClickListener(new View.OnClickListener() {
@@ -440,7 +412,6 @@ public class MainActivity extends AppCompatActivity {
                 if(findPositionX(values)==15){
                     moveImageinGrid(celdas_juego[14],14,celdas_juego[15],15);
                 }
-
             }
         });
         celdas_juego[15].setOnClickListener(new View.OnClickListener() {
@@ -458,20 +429,15 @@ public class MainActivity extends AppCompatActivity {
 
     void swapButtonBackgrounds(Button x, int i, Button y, int j){
         int aux = backgroundIDs[i];
-        //Log.d("SWAP","x.ResourceBack:"+aux);
         y.setBackgroundResource(aux);
         x.setBackgroundResource(backgroundIDs[j]);
 
     }
     void arrangeImagesOnGrid(int[] array, Button[] buttons, int[] backgrounds){
-        if(backgrounds==null){
-            Log.e("ERROR","ESTA NULA LA WEA");
-        }
         for(int i=0;i<16;i++){
             if(array[i]==1) {
                 buttons[i].setBackgroundResource(R.drawable.uno);
                 backgrounds[i] = R.drawable.uno;
-                Log.d("RESOURCES","R.res.uno:"+R.drawable.uno);
             }else if(array[i]==2){
                 buttons[i].setBackgroundResource(R.drawable.dos);
                 backgrounds[i] = R.drawable.dos;
@@ -506,7 +472,6 @@ public class MainActivity extends AppCompatActivity {
                 buttons[i].setBackgroundResource(R.drawable.doce);
                 backgrounds[i] = R.drawable.doce;
             }else if(array[i]==13){
-                //Log.d("RESOURCES","R.res.trece:"+R.drawable.trece);
                 buttons[i].setBackgroundResource(R.drawable.trece);
                 backgrounds[i] = R.drawable.trece;
             }else if(array[i]==14){
@@ -533,7 +498,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         indice+=findRowX(array);
-        //Log.d("MY_INT","indice: "+indice);
         return indice;
     }
     void swap(int[] array, int i, int j){
@@ -544,7 +508,6 @@ public class MainActivity extends AppCompatActivity {
     void checkIsValid(int[] array){
         int x = computeIndex(array);
         if(x%2 == 1){
-            //Log.d("MY_INT","Es impar, recalculando");
             if(findRowX(array)==2){
                 swap(array,14,15);
             }
@@ -554,11 +517,7 @@ public class MainActivity extends AppCompatActivity {
             else{
                 swap(array,13,14);
             }
-            /*for(int i=0;i<16;i++){
-                //Log.d("MY_INT","element is: "+array[i]);
-            }*/
-            //x = computeIndex(array);
-            //Log.d("MY_INT","indice: "+x);
+
         }
     }
     int findRowX(int[] array){
@@ -576,7 +535,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-        //Log.d("MY_INT","posicion: "+x);
         return x;
     }
     int findPositionX(int values[]){
@@ -632,12 +590,4 @@ public class MainActivity extends AppCompatActivity {
         arrangeImagesOnGrid(values,celdas_juego,backgroundIDs);
 
     }
-
-    public void goToMainActivity(View view) {
-        Intent intent = new Intent(this, Instructions.class);
-        startActivity(intent);
-    }
-
-
-
 }

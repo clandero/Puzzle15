@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center|right"
             android:layout_margin="5dp"
-            android:text="Cerrar"
+            android:text="@string/close_popup"
             android:textStyle="bold" />
     </LinearLayout>
 </LinearLayout>

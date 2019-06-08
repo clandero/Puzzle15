@@ -24,7 +24,7 @@
                 android:id="@+id/textView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Desarrollado por:"
+                android:text="@string/credit_title"
                 android:textAlignment="center"
                 android:textSize="22sp" />
 
@@ -36,13 +36,14 @@
                 android:id="@+id/imageView3"
                 android:layout_width="148dp"
                 android:layout_height="144dp"
-                app:srcCompat="@drawable/foto2014442936" />
+                app:srcCompat="@drawable/foto2014442936"
+                android:contentDescription="@string/todo" />
 
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Carlos Landero A."
+                android:text="@string/developer"
                 android:textAlignment="center"
                 android:textSize="20sp" />
 
@@ -50,7 +51,7 @@
                 android:id="@+id/textView5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ing. Civil Informática - UdeC"
+                android:text="@string/carrer"
                 android:textAlignment="center" />
         </LinearLayout>
 

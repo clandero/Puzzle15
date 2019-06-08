@@ -26,7 +26,7 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Puzzle15"
+            android:text="@string/app_name"
             android:textAlignment="center"
             android:textSize="40sp" />
 
@@ -35,14 +35,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="goToMainActivity"
-            android:text="Nueva Partida" />
+            android:text="@string/new_game" />
 
         <Button
             android:id="@+id/load_game"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="CargarPartida"
-            android:text="Cargar Partida" />
+            android:text="@string/load_game" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

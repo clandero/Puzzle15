@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">Puzzle15</string>
-    <string name="title_activity_menu">MenuActivity</string>
+    <string name="credit_title">Desarrollado por:</string>
+    <string name="developer">Carlos Landero A.</string>
+    <string name="carrer">Ing. Civil Informática - UdeC</string>
+    <string name="todo">TODO</string>
+    <string name="number_of_plays">N° de jugadas:</string>
+    <string name="watch_original">Ver imagen original</string>
+    <string name="save_game">Guardar Partida</string>
+    <string name="new_game">Nueva Partida</string>
+    <string name="load_game">Cargar Partida</string>
+    <string name="close_popup">Cerrar</string>
 </resources>

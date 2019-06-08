@@ -22,7 +22,7 @@
                 android:id="@+id/score_title"
                 android:layout_width="113dp"
                 android:layout_height="wrap_content"
-                android:text="N° de jugadas:"
+                android:text="@string/number_of_plays"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textIsSelectable="false" />
@@ -200,14 +200,14 @@
                     android:id="@+id/save_game"
                     android:layout_width="160dp"
                     android:layout_height="60dp"
-                    android:text="Guardar Partida"
+                    android:text="@string/save_game"
                     android:textSize="12sp" />
 
                 <Button
                     android:id="@+id/show_image"
                     android:layout_width="160dp"
                     android:layout_height="60dp"
-                    android:text="Ver imagen original"
+                    android:text="@string/watch_original"
                     android:textSize="12sp" />
             </TableRow>
         </LinearLayout>
