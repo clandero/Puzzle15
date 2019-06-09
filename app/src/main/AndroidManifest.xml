@@ -13,11 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Creditos"></activity>
+        <activity android:name=".Creditos" />
         <activity
             android:name=".Instructions"
             android:configChanges="keyboardHidden|orientation"
-            android:label="Instrucciones"></activity>
+            android:label="Instrucciones" />
         <activity
             android:name=".MenuActivity"
             android:configChanges="keyboardHidden|orientation"

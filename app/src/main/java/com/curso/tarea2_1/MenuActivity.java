@@ -5,6 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 public class MenuActivity extends AppCompatActivity {
     Button new_game;
@@ -23,8 +27,14 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void CargarPartida(View view){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        MainActivity.LoadGameListener();
+        try{
+            FileInputStream fis = getApplicationContext().openFileInput("respaldo_partida.txt");
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            MainActivity.LoadGameListener();
+        }catch(Exception e){
+            e.printStackTrace();
+            Toast.makeText(this, "No existe partida creada previamente.", Toast.LENGTH_SHORT).show();
+        }
     }
 }

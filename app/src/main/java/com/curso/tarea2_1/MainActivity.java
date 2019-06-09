@@ -6,7 +6,6 @@ import android.content.res.Configuration;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -94,10 +93,9 @@ public class MainActivity extends AppCompatActivity {
         int bytesLeidos;
         byte[] buffer = new byte[1024];
         try {
-            FileInputStream fis = getApplicationContext().openFileInput("respaldo_partida.txt");
+            FileInputStream fis = getApplicationContext().openFileInput(file+".txt");
             while((bytesLeidos = fis.read(buffer))>0){
                 String s = new String(buffer);
-                Log.d("LOAD","Buffer is: "+s);
                 int[] numbers = new int[17];
                 Pattern p = Pattern.compile("\\d+");
                 Matcher m = p.matcher(s);
@@ -112,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             fis.close();
-        } catch (Exception e) {
+        }catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(this, "Error al cargar partida", Toast.LENGTH_SHORT).show();
         }
@@ -123,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
         final Dialog MyDialog = new Dialog(MainActivity.this);
         MyDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         MyDialog.setContentView(R.layout.popup_image);
-        Button close = (Button)MyDialog.findViewById(R.id.close);
+        Button close = MyDialog.findViewById(R.id.close);
         close.setEnabled(true);
         close.setOnClickListener(new View.OnClickListener() {
             @Override
